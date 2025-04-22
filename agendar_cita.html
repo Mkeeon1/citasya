@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita</title>
+</head>
+<body>
+    <h1>Agendar Cita</h1>
+    <form method="POST">
+        <label for="numero_orden">Ingrese su número de orden:</label><br>
+        <input type="text" id="numero_orden" name="numero_orden" required><br><br>
+        <button type="submit">Validar Orden</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    {% if doctores %}
+        <h3>Doctores de la Especialidad: {{ especialidad }}</h3>
+        <form method="POST">
+            <label for="doctor_id">Selecciona un Doctor:</label>
+            <select id="doctor_id" name="doctor_id" required>
+                {% for doctor in doctores %}
+                <option value="{{ doctor[0] }}">{{ doctor[1] }} {{ doctor[2] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Ver Citas Disponibles</button>
+        </form>
+    {% elif citas %}
+        <h3>Citas Disponibles con el Doctor: {{ doctor[0] }} {{ doctor[1] }}</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cubículo</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cita in citas %}
+                <tr>
+                    <td>{{ cita[1] }}</td>
+                    <td>{{ cita[2] }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('seleccionar_cita', cita_id=cita[0]) }}">
+                            <button type="submit">Agendar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif especialidad is not none %}
+        <p>No hay doctores disponibles para la especialidad: {{ especialidad }}</p>
+    {% endif %}
+    <a href="{{ url_for('user_menu') }}">Regresar al Menú</a>
+</body>
+</html>

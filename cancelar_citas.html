@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancelar Citas</title>
+</head>
+<body>
+    <h1>Cancelar Citas</h1>
+    {% if citas %}
+        <form method="POST">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Cubículo</th>
+                        <th>Doctor</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cita in citas %}
+                        <tr>
+                            <td>{{ cita[1] }}</td>
+                            <td>{{ cita[2] }}</td>
+                            <td>{{ cita[3] }}</td>
+                            <td>
+                                <input type="radio" name="cita_id" value="{{ cita[0] }}" required>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit">Cancelar Cita</button>
+        </form>
+    {% else %}
+        <p>No tienes citas agendadas.</p>
+    {% endif %}
+    <a href="{{ url_for('user_menu') }}">Volver al Menú</a>
+</body>
+</html>

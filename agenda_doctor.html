@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda del Doctor</title>
+</head>
+<body>
+    <h1>Agenda del Doctor</h1>
+    <h2>Agenda del Doctor</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Cubículo</th>
+                <th>Estado</th>
+                <th>Seleccionar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cita in agenda %}
+            <tr>
+                <td>{{ cita[1] }}</td>
+                <td>{{ cita[2] }}</td>
+                <td>{{ cita[3] }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('seleccionar_cita', cita_id=cita[0]) }}">
+                        <button type="submit">Seleccionar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('orden_no_valida') }}">Volver</a>
+</body>
+</html>

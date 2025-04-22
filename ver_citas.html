@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Citas</title>
+</head>
+<body>
+    <h1>Mis Citas</h1>
+
+    {% if citas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cubículo</th>
+                    <th>Doctor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cita in citas %}
+                <tr>
+                    <td>{{ cita[0] }}</td>
+                    <td>{{ cita[1] }}</td>
+                    <td>{{ cita[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aún no tienes citas agendadas.</p>
+    {% endif %}
+
+    <form action="{{ url_for('user_menu') }}" method="GET">
+        <button type="submit">Volver al Menú</button>
+    </form>
+</body>
+</html>

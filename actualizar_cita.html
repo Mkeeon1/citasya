@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Cita</title>
+</head>
+<body>
+    <h1>Actualizar Cita</h1>
+    <form method="POST">
+        <label for="fecha">Nueva Fecha:</label><br>
+        <input type="datetime-local" id="fecha" name="fecha" value="{{ cita[2] }}" required><br><br>
+
+        <label for="cubiculo">Nuevo Cubículo:</label><br>
+        <input type="text" id="cubiculo" name="cubiculo" value="{{ cita[3] }}" required><br><br>
+
+        <label for="estado">Nuevo Estado:</label><br>
+        <select id="estado" name="estado" required>
+            <option value="Disponible" {% if cita[4] == 'Disponible' %}selected{% endif %}>Disponible</option>
+            <option value="Ocupado" {% if cita[4] == 'Ocupado' %}selected{% endif %}>Ocupado</option>
+            <option value="Cancelado" {% if cita[4] == 'Cancelado' %}selected{% endif %}>Cancelado</option>
+        </select><br><br>
+
+        <button type="submit">Actualizar</button>
+    </form>
+    <a href="{{ url_for('doctor_menu') }}">Volver al menú</a>
+</body>
+</html>

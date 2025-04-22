@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Asignar Orden</title>
+</head>
+<body>
+    <h2>Asignar Orden</h2>
+    <p>Paciente: {{ paciente[1] }} {{ paciente[2] }}</p>
+    <form method="POST">
+        <label for="especialidad">Especialidad:</label>
+        <select id="especialidad" name="especialidad" required>
+            <option value="Cardiología">Cardiología</option>
+            <option value="Pediatría">Pediatría</option>
+            <option value="Ginecología">Ginecología</option>
+            <option value="Neurología">Neurología</option>
+            <option value="Psiquiatría">Psiquiatría</option>
+        </select><br>
+        <button type="submit">Asignar Orden</button>
+    </form>
+    <a href="{{ url_for('ver_agenda') }}">Regresar a la Agenda</a>
+</body>
+</html>

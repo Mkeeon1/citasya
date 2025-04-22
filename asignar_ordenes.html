@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Asignar Órdenes</title>
+</head>
+<body>
+    <h2>Asignar Órdenes</h2>
+    <form method="post">
+        <label for="cliente_id">Paciente:</label>
+        <select id="cliente_id" name="cliente_id" required>
+            {% if pacientes %}
+                {% for paciente in pacientes %}
+                <option value="{{ paciente[0] }}">{{ paciente[0] }} - {{ paciente[1] }}</option>
+                {% endfor %}
+            {% else %}
+                <option value="" disabled>No hay pacientes con citas agendadas</option>
+            {% endif %}
+        </select><br>
+        <label for="especialidad">Especialidad:</label>
+        <select id="especialidad" name="especialidad" required>
+            <option value="Cardiología">Cardiología</option>
+            <option value="Pediatría">Pediatría</option>
+            <option value="Ginecología">Ginecología</option>
+            <option value="Neurología">Neurología</option>
+            <option value="Psiquiatría">Psiquiatría</option>
+        </select><br>
+        <button type="submit" {% if not pacientes %}disabled{% endif %}>Generar Orden</button>
+    </form>
+    <a href="{{ url_for('doctor_menu') }}">Regresar al Menú</a>
+</body>
+</html>

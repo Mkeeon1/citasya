@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas Médicas</title>
+</head>
+<body>
+    <h1>Citas Médicas Asignadas</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Cita</th>
+                <th>Fecha</th>
+                <th>Cubículo</th>
+                <th>Estado</th>
+                <th>Doctor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cita in citas %}
+                <tr>
+                    <td>{{ cita[0] }}</td>
+                    <td>{{ cita[1] }}</td>
+                    <td>{{ cita[2] }}</td>
+                    <td>{{ cita[3] }}</td>
+                    <td>{{ cita[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('doctor_menu') }}">Volver al menú</a>
+</body>
+</html>

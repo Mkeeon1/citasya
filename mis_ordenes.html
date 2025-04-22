@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Órdenes</title>
+</head>
+<body>
+    <h2>Mis Órdenes</h2>
+    {% if ordenes %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Número de Orden</th>
+                    <th>Especialidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for orden in ordenes %}
+                <tr>
+                    <td>{{ orden[0] }}</td> <!-- Número de Orden -->
+                    <td>{{ orden[1] }}</td> <!-- Especialidad -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No tienes órdenes asignadas.</p>
+    {% endif %}
+    <a href="{{ url_for('user_menu') }}">Regresar al Menú</a>
+</body>
+</html>

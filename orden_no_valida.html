@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden No Válida</title>
+</head>
+<body>
+    <h1>Orden No Válida o Expirada</h1>
+    <p>Por favor, seleccione un médico general para ver su agenda:</p>
+    <h2>Seleccione un Doctor de Medicina General</h2>
+    <form method="POST">
+        <select name="doctor_id">
+            {% for doctor in doctores %}
+            <option value="{{ doctor[0] }}">{{ doctor[1] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Ver Agenda</button>
+    </form>
+    <a href="{{ url_for('user_menu') }}">Volver al menú</a>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda del Doctor</title>
+</head>
+<body>
+    <h2>Agenda del Doctor</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Cubículo</th>
+                <th>Estado</th>
+                <th>Paciente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cita in agenda %}
+            <tr>
+                <td>{{ cita[1] }}</td> <!-- Fecha -->
+                <td>{{ cita[2] }}</td> <!-- Cubículo -->
+                <td>{{ cita[3] }}</td> <!-- Estado -->
+                <td>
+                    {% if cita[3] == 'Ocupado' %}
+                        {{ cita[5] }} {{ cita[6] }} (ID: {{ cita[4] }})
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>
+                    {% if cita[3] == 'Ocupado' %}
+                        <a href="{{ url_for('asignar_orden', cita_id=cita[0]) }}">Asignar Orden</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('doctor_menu') }}">Regresar al Menú</a>
+</body>
+</html>
